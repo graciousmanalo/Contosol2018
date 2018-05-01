@@ -31,9 +31,24 @@ namespace ContosoUniversity2018.Controllers
             if (id == null)
             {
                 return NotFound();
+                /*
+                 * Status Codes
+                 * Success:
+                 * return Ok() - HTTP Status 200
+                 * return Created() - HTTP Status 201
+                 * return NoContent() - HTTP Status 204
+                 * 
+                 * Client Error:
+                 * return BadRequest() - HTTP Status 400
+                 * return Unauthorized() - HTTP Status 401
+                 * return NotFound() - HTTP Status 404
+                 * 
+                 */
             }
 
+            //Include this student's enrollment information with course code and course title
             var student = await _context.Students
+                .Include(e => e.Enrollments).ThenInclude(c => c.Course)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {

@@ -10,9 +10,9 @@
         <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i>Create New</a>
     </p>
     <div class="table-responsive">
-
-        <table class="table">
-            <thead>
+        <table id="tablesorted" class="table table-bordered">
+            @*bootstrap*@
+            <thead class="thead-dark">
                 <tr>
 
                     @* gcmanalo: combine first and last name
@@ -51,7 +51,7 @@
             {
                 <tr>
 
-                     @* gcmanalo: combine first and last name
+                    @* gcmanalo: combine first and last name
                     <td>
                         @Html.DisplayFor(modelItem => item.FirstName)
                     </td>
@@ -86,8 +86,8 @@
                         <a class="ico-success" title="Edit Student"
                            asp-action="Edit"
                            asp-route-id="@item.ID"><i class="fas fa-edit"></i></a>
-                        <a class="ico-danger" title="Delete Student" 
-                           asp-action="Delete" 
+                        <a class="ico-danger" title="Delete Student"
+                           asp-action="Delete"
                            asp-route-id="@item.ID"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
