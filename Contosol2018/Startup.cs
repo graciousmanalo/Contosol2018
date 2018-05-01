@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Contosol2018.Data;
 using Contosol2018.Models;
 using Contosol2018.Services;
+using ContosoUniversity2018.Data;
 
 namespace Contosol2018
 {
@@ -37,6 +38,12 @@ namespace Contosol2018
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            //gcmanalo: Add School Data Services
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //endgcmanalo
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +61,9 @@ namespace Contosol2018
             }
 
             app.UseStaticFiles();
+
+            //gcmanalo: custom error pages that uses the controller
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseAuthentication();
 

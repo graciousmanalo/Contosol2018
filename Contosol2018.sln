@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contosol2018", "Contosol2018\Contosol2018.csproj", "{E9DD17E2-D19B-4E75-860D-B4D934F96D7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContosoUniversity2018", "Contosol2018\ContosoUniversity2018.csproj", "{E9DD17E2-D19B-4E75-860D-B4D934F96D7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
