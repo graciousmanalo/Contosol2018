@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity2018.Data;
 using ContosoUniversity2018.Models;
+using ContosoUniversity2018.Models.SchoolViewModels;
 
 namespace ContosoUniversity2018.Controllers
 {
@@ -160,9 +161,34 @@ namespace ContosoUniversity2018.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //gcmanalo: Create Stats report action
+        public async Task<IActionResult> Stats()
+        {
+            //Populate the EnrollmentDateGroup ViewModel with student statistics 
+            //using LINQ(Language Integrated Query)
+
+            IQueryable<Models.SchoolViewModels.EnrollmentDateGroup> data =
+                from student in _context.Students //SQL FROM Clause: FROM Students
+                group student by student.EnrollmentDate into dateGroup //GROUP BY EnrollmentDate
+                select new EnrollmentDateGroup //SELECT EnrollmentDate, COUNT(*) AS StudentCount
+                {
+                    EnrollmentDate = dateGroup.Key,
+                    StudentCount = dateGroup.Count()
+                };
+
+            /*
+             * SELECT EnrollmentDate, COUNT(*) AS StudentCount
+             * FROM Students
+             * Group by EnrollmentDateGroup
+             * 
+             */
+
+            return View(await data.ToListAsync()); //IQuearable needs to convert into the list .ToListAsync()
+        }
+
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.ID == id);
+            return _context.Students.Any(e => e.ID == id); //lambda
         }
     }
 }

@@ -3,7 +3,7 @@
 
 
     //DataTables
-    $("#tablesorted").DataTabe({
+    $("#tablesorted").DataTable({
         "columnDefs": [
             { "orderable": false, "targets": -1 }, //stop sorting on last column
         ],
